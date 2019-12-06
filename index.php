@@ -21,14 +21,11 @@ $street_number = $_POST['streetnumber'];
 $city = $_POST['city'];
 $zipcode = $_POST['zipcode'];
 
-echo isEmailValid($email_address);
+$invalid_message = isEmailValid($email_address);
 
 //function that check if email adres is valid
 function isEmailValid($email){
-    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-        return 'email address is valid';
-    }
-    else{
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         return 'email address is invalid';
     }
 }

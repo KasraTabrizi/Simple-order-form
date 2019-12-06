@@ -25,7 +25,7 @@
     <form method="post" action="index.php">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="email">E-mail:</label>
+                <label for="email">E-mail: <span style="color:text;"><?php echo $invalid_message;?></span></label>
                 <input type="text" id="email" name="email" class="form-control" required>
             </div>
             <div></div>
