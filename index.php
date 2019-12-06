@@ -22,6 +22,7 @@ $city = $_POST['city'];
 $zipcode = $_POST['zipcode'];
 
 echo isEmailValid($email_address);
+
 //function that check if email adres is valid
 function isEmailValid($email){
     if(filter_var($email, FILTER_VALIDATE_EMAIL)){
