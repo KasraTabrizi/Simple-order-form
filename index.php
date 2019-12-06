@@ -28,6 +28,13 @@ function isEmailValid($email){
     }
 }
 
+//function that check if street number and zip code contain only numbers
+function isNumber($inputText){
+    if(! is_numeric($inputText)){
+        return 'information should be numeric!';
+    }
+}
+
 //your products with their price.
 $products = [
     ['name' => 'Club Ham', 'price' => 3.20],

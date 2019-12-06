@@ -8,6 +8,12 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css"
           rel="stylesheet"/>
     <title>Order food & drinks</title>
+    <style>
+        .validity_check{
+            color:red; 
+            font-weight:bold;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -25,7 +31,7 @@
     <form method="post" action="index.php">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="email">E-mail: <span style="color:red; font-weight:bold;"><?php echo isEmailValid($email_address);?></span></label>
+                <label for="email">E-mail: <span class="validity_check"><?php echo isEmailValid($email_address);?></span></label>
                 <input type="text" id="email" name="email" class="form-control" required>
             </div>
             <div></div>
@@ -40,7 +46,7 @@
                     <input type="text" name="street" id="street" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="streetnumber">Street number:</label>
+                    <label for="streetnumber">Street number: <span class="validity_check"><?php echo isNumber($street_number);?></span></label>
                     <input type="text" id="streetnumber" name="streetnumber" class="form-control" required>
                 </div>
             </div>
@@ -50,7 +56,7 @@
                     <input type="text" id="city" name="city" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="zipcode">Zipcode</label>
+                    <label for="zipcode">Zipcode <span class="validity_check"><?php echo isNumber($zipcode);?></span></label>
                     <input type="text" id="zipcode" name="zipcode" class="form-control" required>
                 </div>
             </div>
