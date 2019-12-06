@@ -28,6 +28,9 @@
             </li>
         </ul>
     </nav>
+
+    <div><?php showAlertMessage();?></div>
+
     <form method="post" action="index.php">
         <div class="form-row">
             <div class="form-group col-md-6">

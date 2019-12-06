@@ -34,6 +34,17 @@ function isNumber($inputText){
         return 'information should be numeric!';
     }
 }
+//function that shows an alert danger box
+function showAlertMessage($error = "", $showAlert = false){
+    //if there is no error message and the showAlert is true than show a succes alert
+    if( empty($error) and $showAlert == true ){ 
+        echo'<div class="alert alert-success" role="alert">Form succesfully send!</div>';
+    }
+    //if there is an error message and the showAlert is true, then show a danger alert
+    elseif(!empty($error) and $showAlert == true){ 
+        echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+    }
+}
 
 //your products with their price.
 $products = [
@@ -50,4 +61,10 @@ $products = [
     ['name' => 'Ice-tea', 'price' => 3],
 ];
 $totalValue = 0;
+
+
+ini_set('display_errors','1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 require 'form-view.php';
