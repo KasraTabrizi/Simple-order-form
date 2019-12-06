@@ -15,16 +15,16 @@ function whatIsHappening() {
     var_dump($_SESSION);
 }
 
+
+
 //function that check if email adres is valid
 function isEmailValid($email){
-    //some valie Email address formats
-    $acceptableAddresses = array('@hotmail.com', '@yahoo.com','@gmail.com');
-    foreach($acceptableAddresses as $acceptable){
-        if(strpos($email, $acceptable) > -1){
-            return 'email addres is valid';
-        }
+    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+        return 'email address is valid';
     }
-    return 'email addres is invalid';
+    else{
+        return 'email address is invalid';
+    }
 }
 
 //your products with their price.
