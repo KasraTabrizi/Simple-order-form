@@ -18,7 +18,7 @@ function whatIsHappening() {
 //function that check if email adres is valid
 function isEmailValid($email){
     //some valie Email address formats
-    $acceptableAddresses = ('@hotmail.com', '@yahoo.com','@gmail.com');
+    $acceptableAddresses = array('@hotmail.com', '@yahoo.com','@gmail.com');
     foreach($acceptableAddresses as $acceptable){
         if(strpos($email, $acceptable) > -1){
             return 'email addres is valid';
