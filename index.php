@@ -10,6 +10,14 @@ $street_number = $_POST['streetnumber'];
 $city = $_POST['city'];
 $zipcode = $_POST['zipcode'];
 
+$_SESSION["email"] = $email_address;
+$_SESSION['street'] = $street_name; 
+$_SESSION['streetnumber'] = $street_number;
+$_SESSION['city'] = $city;
+$_SESSION['zipcode'] = $zipcode ;
+
+//whatIsHappening();
+
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
     var_dump($_GET);

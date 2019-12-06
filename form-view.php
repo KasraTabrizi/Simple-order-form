@@ -35,7 +35,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail: <span class="validity_check"><?php echo isEmailValid($email_address);?></span></label>
-                <input type="text" id="email" name="email" class="form-control" required>
+                <input type="text" id="email" name="email" class="form-control" required> 
             </div>
             <div></div>
         </div>
