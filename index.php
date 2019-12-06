@@ -4,6 +4,12 @@ declare(strict_types=1);
 //we are going to use session variables so we need to enable sessions
 session_start();
 
+$email_address = $_POST['email'];
+$street_name = $_POST['street'];
+$street_number = $_POST['streetnumber'];
+$city = $_POST['city'];
+$zipcode = $_POST['zipcode'];
+
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
@@ -14,12 +20,6 @@ function whatIsHappening() {
     echo '<h2>$_SESSION</h2>';
     var_dump($_SESSION);
 }
-
-$email_address = $_POST['email'];
-$street_name = $_POST['street'];
-$street_number = $_POST['streetnumber'];
-$city = $_POST['city'];
-$zipcode = $_POST['zipcode'];
 
 //function that check if email adres is valid
 function isEmailValid($email){
@@ -34,6 +34,7 @@ function isNumber($inputText){
         return 'information should be numeric!';
     }
 }
+
 //function that shows an alert danger box
 function showAlertMessage($error = "", $showAlert = false){
     //if there is no error message and the showAlert is true than show a succes alert
@@ -61,10 +62,5 @@ $products = [
     ['name' => 'Ice-tea', 'price' => 3],
 ];
 $totalValue = 0;
-
-
-ini_set('display_errors','1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
 
 require 'form-view.php';
