@@ -26,7 +26,7 @@ $invalid_message = isEmailValid($email_address);
 //function that check if email adres is valid
 function isEmailValid($email){
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        return 'email address is invalid';
+        return 'email address is invalid!';
     }
 }
 
