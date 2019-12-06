@@ -3,6 +3,7 @@
 declare(strict_types=1);
 //we are going to use session variables so we need to enable sessions
 session_start();
+
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
@@ -13,6 +14,19 @@ function whatIsHappening() {
     echo '<h2>$_SESSION</h2>';
     var_dump($_SESSION);
 }
+
+//function that check if email adres is valid
+function isEmailValid(string $email){
+    //some valie Email address formats
+    $acceptable = ('@hotmail.com', '@yahoo.com','@gmail.com');
+    if(strpos($email, $acceptable) > -1){
+        return 'email addres is valid';
+    }
+    else{
+        return 'email addres is invalid';
+    }
+}
+
 //your products with their price.
 $products = [
     ['name' => 'Club Ham', 'price' => 3.20],
