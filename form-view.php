@@ -134,6 +134,34 @@
             $_SESSION['Club_Salmon'] = 'checked';
         }
 
+        if (empty($_POST["Cola"]))  { 
+            $_SESSION['Cola'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Cola'] = 'checked';
+        }
+
+        if (empty($_POST["Fanta"]))  { 
+            $_SESSION['Fanta'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Fanta'] = 'checked';
+        }
+
+        if (empty($_POST["Sprite"]))  { 
+            $_SESSION['Sprite'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Sprite'] = 'checked';
+        }
+
+        if (empty($_POST["Ice-tea"]))  { 
+            $_SESSION['Ice-tea'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Ice-tea'] = 'checked';
+        }
+
         if(empty($emailErr) and empty($streetNumErr) and empty($streetNameErr) and empty($zipcodeErr) and empty($cityErr)){
             $alertCheck = 2;
         }
@@ -208,40 +236,71 @@
                 </div>
             </div>
         </fieldset>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <fieldset>
+                    <legend>Products</legend>
+                    <?php foreach ($products AS $i => $product): ?>
+                        <label>
+                            <input type="checkbox" value="1" name=<?php echo $product['name'] ?>    
+                            <?php 
+                                if($product['name'] == "Club_Ham"){
+                                    echo $_SESSION['Club_Ham'];
+                                }
+                                if($product['name'] == "Club_Cheese"){
+                                    echo $_SESSION['Club_Cheese'];
+                                }
+                                if($product['name'] == "Club_Cheese_&_Ham"){
+                                    echo $_SESSION['Club_Cheese_&_Ham'];
+                                }
+                                if($product['name'] == "Club_Chicken"){
+                                    echo $_SESSION['Club_Chicken'];
+                                }
+                                if($product['name'] == "Club_Salmon"){
+                                    echo $_SESSION['Club_Salmon'];
+                                }
 
-        <fieldset>
-            <legend>Products</legend>
-            <?php foreach ($products AS $i => $product): ?>
-                <label>
-                    <input type="checkbox" value="1" name=<?php echo $product['name'] ?>    
-                    <?php 
-                        if($product['name'] == "Club_Ham"){
-                            echo $_SESSION['Club_Ham'];
-                        }
-                        if($product['name'] == "Club_Cheese"){
-                            echo $_SESSION['Club_Cheese'];
-                        }
-                        if($product['name'] == "Club_Cheese_&_Ham"){
-                            echo $_SESSION['Club_Cheese_&_Ham'];
-                        }
-                        if($product['name'] == ""){
-                            echo $_SESSION['Club_Chicken'];
-                        }
-                        if($product['name'] == "Club_Salmon"){
-                            echo $_SESSION['Club_Salmon'];
-                        }
-                    ?>/> 
-                    <?php echo str_replace( "_", " ", $product['name']) ?> -&euro; 
-                    <?php echo number_format($product['price'], 2) ?>
-                </label>
-                <br />
-            <?php endforeach; ?>
-        </fieldset>
-
+                                if($product['name'] == "Cola"){
+                                    echo $_SESSION['Cola'];
+                                }
+                                if($product['name'] == "Fanta"){
+                                    echo $_SESSION['Fanta'];
+                                }
+                                if($product['name'] == "Sprite"){
+                                    echo $_SESSION['Sprite'];
+                                }
+                                if($product['name'] == "Ice-tea"){
+                                    echo $_SESSION['Ice-tea'];
+                                }
+                            ?>/> 
+                            <?php echo str_replace( "_", " ", $product['name']) ?> -&euro; 
+                            <?php echo number_format($product['price'], 2) ?>
+                        </label>
+                        <br />
+                    <?php endforeach; ?>
+                    </fieldset>
+                </div>
+            
+            <div class="form-group col-md-6">
+                <fieldset>
+                    <legend>Delivery Time</legend>
+                    <!-- <label for="inputState">Delivery Time</label> -->
+                    <select id="inputState" class="form-control">
+                        <option selected>Choose a delivery time</option>
+                        <option>Normal Delivery | 2 hours - 20 &euro;</option>
+                        <option>Express Delivery | 45 minutes - 40 &euro;</option>
+                    </select>
+                </fieldset>
+            </div>
+        </div>
+        
         <button type="submit" name="submit" value="submit" class="btn btn-primary">Order!</button>
     </form>
 
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
