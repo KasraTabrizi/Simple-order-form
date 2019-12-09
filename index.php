@@ -2,7 +2,10 @@
 //this line makes PHP behave in a more strict way
 declare(strict_types=1);
 //we are going to use session variables so we need to enable sessions
+
 session_start();
+
+$food = 1;
 
 // $email_address = $_POST['email'];
 // $street_name = $_POST['street'];
@@ -20,7 +23,7 @@ session_start();
 //     $_SESSION['zipcode'] = $zipcode;
 // }
 
-//whatIsHappening();
+
 
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
@@ -36,16 +39,20 @@ function whatIsHappening() {
 //function that check if email adres is valid
 function isEmailValid($email){
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $email_valid = false;
-        return 'email address is invalid!';
+        return false; //email is invalid
+    }
+    else{
+        return true; //email is valid
     }
 }
 
 //function that check if street number and zip code contain only numbers
 function isNumber($inputText){
     if(! is_numeric($inputText)){
-        $isNumber_valid = false;
-        return 'information should be numeric!';
+        return false; //is not a number
+    }
+    else{
+        return true; //is a number
     }
 }
 
@@ -60,21 +67,29 @@ function showAlertMessage($error = "", $showAlert = false){
         echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
     }
 }
-
 //your products with their price.
-$products = [
-    ['name' => 'Club Ham', 'price' => 3.20],
-    ['name' => 'Club Cheese', 'price' => 3],
-    ['name' => 'Club Cheese & Ham', 'price' => 4],
-    ['name' => 'Club Chicken', 'price' => 4],
-    ['name' => 'Club Salmon', 'price' => 5]
-];
-$products = [
-    ['name' => 'Cola', 'price' => 2],
-    ['name' => 'Fanta', 'price' => 2],
-    ['name' => 'Sprite', 'price' => 2],
-    ['name' => 'Ice-tea', 'price' => 3],
-];
+if(isset($_GET["food"])){
+    $food = $_GET["food"];
+}
+
+if($food == "1"){
+    $products = [
+        ['name' => 'Club Ham', 'price' => 3.20],
+        ['name' => 'Club Cheese', 'price' => 3],
+        ['name' => 'Club Cheese & Ham', 'price' => 4],
+        ['name' => 'Club Chicken', 'price' => 4],
+        ['name' => 'Club Salmon', 'price' => 5]
+    ];
+}
+else{
+    $products = [
+        ['name' => 'Cola', 'price' => 2],
+        ['name' => 'Fanta', 'price' => 2],
+        ['name' => 'Sprite', 'price' => 2],
+        ['name' => 'Ice-tea', 'price' => 3],
+    ];
+}
+
 $totalValue = 0;
 
 require 'form-view.php';

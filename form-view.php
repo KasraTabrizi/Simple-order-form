@@ -23,46 +23,88 @@
 <?php 
     $emailErr = $streetNumErr = $streetNameErr = $zipcodeErr = $cityErr = "";
     $email_address = $street_name = $street_number = $city = $zipcode = "";
-
+    $alertCheck = 0;
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+        $emailErr = $streetNumErr = $streetNameErr = $zipcodeErr = $cityErr = "";
         if (empty($_POST["email"])) {
             $emailErr = "Missing";
+            $_SESSION["email"] = $email_address;
+            //$alertCheck = 1;
         }
         else {
             $email_address = $_POST["email"];
+            $_SESSION["email"] = $email_address;
+            if(!isEmailValid($email_address)){
+                $emailErr = 'email address is invalid!';
+                //$alertCheck = 1;
+            }
+            else{
+                $emailErr = "";
+                //$alertCheck = 2;
+            }
         }
-    
         if (empty($_POST["street"])) {
             $streetNameErr = "Missing";
+            $_SESSION['street'] = $street_name;
+            //$alertCheck = 1;
         }
         else {
             $street_name = $_POST["street"];
+            $_SESSION['street'] = $street_name;
+            //$alertCheck = 2;
         }
-    
         if (empty($_POST["streetnumber"]))  {
             $streetNumErr = "Missing";
+            $_SESSION['streetnumber'] = $street_number;
+            //$alertCheck = 1;
         }
         else {
             $street_number = $_POST["streetnumber"];
+            $_SESSION['streetnumber'] = $street_number;
+            if(!isNumber($street_number)){
+                $streetNumErr = 'value is not a number!';
+                //$alertCheck = 1;
+            }
+            else{
+                $streetNumErr = "";
+                //$alertCheck = 2;
+            }
         }
-
         if (empty($_POST["zipcode"]))  {
             $zipcodeErr = "Missing";
+            $_SESSION['zipcode'] = $zipcode;
+            //$alertCheck = 1;
         }
         else {
             $zipcode = $_POST["zipcode"];
+            $_SESSION['zipcode'] = $zipcode;
+            if(!isNumber($zipcode)){
+                $streetNumErr = 'value is not a number!';
+                //$alertCheck = 1;
+            }
+            else{
+                $streetNumErr = "";
+                //$alertCheck = 2;
+            }
         }
-
         if (empty($_POST["city"]))  {
             $cityErr = "Missing";
+            $_SESSION['city'] = $city;
+            //$alertCheck = 1;
         }
         else {
             $city = $_POST["city"];
+            $_SESSION['city'] = $city;
+            //$alertCheck = 2;
+        }
+        if(empty($emailErr) and empty($streetNumErr) and empty($streetNameErr) and empty($zipcodeErr) and empty($cityErr)){
+            $alertCheck = 2;
+        }
+        else{
+            $alertCheck = 1;
         }
     }
 ?>
-
 
 <div class="container">
     <h1>Order food in restaurant "the Personal Ham Processors"</h1>
@@ -79,7 +121,19 @@
 
     <div>
         <?php 
-            showAlertMessage();
+            switch($alertCheck){
+                case 0:
+                    showAlertMessage(); //default nothing
+                break;
+                case 1:
+                    showAlertMessage("error in form", true); //error in form
+                break;
+                case 2:
+                    showAlertMessage("", true); //form succesfully send!
+                break;
+                default:
+                break;
+            }
         ?>
     </div>
 
@@ -87,7 +141,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail: <span class="validity_check"><?php echo $emailErr; //isEmailValid($email_address); ?></span></label>
-                <input type="text" id="email" name="email" class="form-control" value= <?php //echo $_SESSION["email"];?>> 
+                <input type="text" id="email" name="email" class="form-control" value= <?php echo $_SESSION["email"];?>> 
             </div>
             <div></div>
         </div>
@@ -98,21 +152,21 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="street">Street:<span class="validity_check"><?php echo $streetNameErr;//isNumber($street_number);?></span></label>
-                    <input type="text" name="street" id="street" class="form-control">
+                    <input type="text" name="street" id="street" class="form-control" value= <?php echo $_SESSION["street"];?>>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Street number: <span class="validity_check"><?php echo $streetNumErr;//isNumber($street_number);?></span></label>
-                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" value="">
+                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" value= <?php echo $_SESSION["streetnumber"];?>>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:<span class="validity_check"><?php echo $cityErr;//isNumber($street_number);?></span></label>
-                    <input type="text" id="city" name="city" class="form-control" value="">
+                    <input type="text" id="city" name="city" class="form-control" value=<?php echo $_SESSION["city"];?>>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode <span class="validity_check"><?php echo $zipcodeErr;//isNumber($zipcode);?></span></label>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="">
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" value=<?php echo $_SESSION["zipcode"];?>>
                 </div>
             </div>
         </fieldset>
