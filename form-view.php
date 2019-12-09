@@ -32,7 +32,18 @@
         </ul>
     </nav>
 
-    <div><?php showAlertMessage();?></div>
+    <div>
+        <?php 
+            if(isset($_POST['submit'])){
+                $_SESSION["email"] = $email_address;
+                $_SESSION['street'] = $street_name; 
+                $_SESSION['streetnumber'] = $street_number;
+                $_SESSION['city'] = $city;
+                $_SESSION['zipcode'] = $zipcode;
+            }
+            showAlertMessage();
+        ?>
+    </div>
 
     <form method="post" action="index.php">
         <div class="form-row">
@@ -53,17 +64,17 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Street number: <span class="validity_check"><?php echo isNumber($street_number);?></span></label>
-                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" required>
+                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" value="" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" class="form-control" required>
+                    <input type="text" id="city" name="city" class="form-control" value="" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode <span class="validity_check"><?php echo isNumber($zipcode);?></span></label>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control" required>
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="" required>
                 </div>
             </div>
         </fieldset>
