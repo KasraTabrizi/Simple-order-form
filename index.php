@@ -4,22 +4,21 @@ declare(strict_types=1);
 //we are going to use session variables so we need to enable sessions
 session_start();
 
-$email_address = $_POST['email'];
-$street_name = $_POST['street'];
-$street_number = $_POST['streetnumber'];
-$city = $_POST['city'];
-$zipcode = $_POST['zipcode'];
-$email_valid = false;
-$isNumber_valid = false;
+// $email_address = $_POST['email'];
+// $street_name = $_POST['street'];
+// $street_number = $_POST['streetnumber'];
+// $city = $_POST['city'];
+// $zipcode = $_POST['zipcode'];
 
-//check if the submit button is pressed
-if(isset($_POST['submit'])){
-    $_SESSION["email"] = $email_address;
-    $_SESSION['street'] = $street_name; 
-    $_SESSION['streetnumber'] = $street_number;
-    $_SESSION['city'] = $city;
-    $_SESSION['zipcode'] = $zipcode;
-}
+
+// //check if the submit button is pressed
+// if(isset($_POST['submit'])){
+//     $_SESSION["email"] = $email_address;
+//     $_SESSION['street'] = $street_name; 
+//     $_SESSION['streetnumber'] = $street_number;
+//     $_SESSION['city'] = $city;
+//     $_SESSION['zipcode'] = $zipcode;
+// }
 
 //whatIsHappening();
 
@@ -40,9 +39,6 @@ function isEmailValid($email){
         $email_valid = false;
         return 'email address is invalid!';
     }
-    else{
-        $email_valid = true;
-    }
 }
 
 //function that check if street number and zip code contain only numbers
@@ -50,9 +46,6 @@ function isNumber($inputText){
     if(! is_numeric($inputText)){
         $isNumber_valid = false;
         return 'information should be numeric!';
-    }
-    else{
-        $isNumber_valid = true;
     }
 }
 

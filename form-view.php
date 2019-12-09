@@ -19,6 +19,51 @@
     </style>
 </head>
 <body>
+
+<?php 
+    $emailErr = $streetNumErr = $streetNameErr = $zipcodeErr = $cityErr = "";
+    $email_address = $street_name = $street_number = $city = $zipcode = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        if (empty($_POST["email"])) {
+            $emailErr = "Missing";
+        }
+        else {
+            $email_address = $_POST["email"];
+        }
+    
+        if (empty($_POST["street"])) {
+            $streetNameErr = "Missing";
+        }
+        else {
+            $street_name = $_POST["street"];
+        }
+    
+        if (empty($_POST["streetnumber"]))  {
+            $streetNumErr = "Missing";
+        }
+        else {
+            $street_number = $_POST["streetnumber"];
+        }
+
+        if (empty($_POST["zipcode"]))  {
+            $zipcodeErr = "Missing";
+        }
+        else {
+            $zipcode = $_POST["zipcode"];
+        }
+
+        if (empty($_POST["city"]))  {
+            $cityErr = "Missing";
+        }
+        else {
+            $city = $_POST["city"];
+        }
+    }
+?>
+
+
 <div class="container">
     <h1>Order food in restaurant "the Personal Ham Processors"</h1>
     <nav>
@@ -34,13 +79,6 @@
 
     <div>
         <?php 
-            if(isset($_POST['submit'])){
-                $_SESSION["email"] = $email_address;
-                $_SESSION['street'] = $street_name; 
-                $_SESSION['streetnumber'] = $street_number;
-                $_SESSION['city'] = $city;
-                $_SESSION['zipcode'] = $zipcode;
-            }
             showAlertMessage();
         ?>
     </div>
@@ -48,8 +86,8 @@
     <form method="post" action="index.php">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="email">E-mail: <span class="validity_check"><?php echo isEmailValid($email_address);?></span></label>
-                <input type="text" id="email" name="email" class="form-control" value= <?php echo $_SESSION["email"];?>> 
+                <label for="email">E-mail: <span class="validity_check"><?php echo $emailErr; //isEmailValid($email_address); ?></span></label>
+                <input type="text" id="email" name="email" class="form-control" value= <?php //echo $_SESSION["email"];?>> 
             </div>
             <div></div>
         </div>
@@ -59,21 +97,21 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="street">Street:</label>
+                    <label for="street">Street:<span class="validity_check"><?php echo $streetNameErr;//isNumber($street_number);?></span></label>
                     <input type="text" name="street" id="street" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="streetnumber">Street number: <span class="validity_check"><?php echo isNumber($street_number);?></span></label>
+                    <label for="streetnumber">Street number: <span class="validity_check"><?php echo $streetNumErr;//isNumber($street_number);?></span></label>
                     <input type="text" id="streetnumber" name="streetnumber" class="form-control" value="">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="city">City:</label>
+                    <label for="city">City:<span class="validity_check"><?php echo $cityErr;//isNumber($street_number);?></span></label>
                     <input type="text" id="city" name="city" class="form-control" value="">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="zipcode">Zipcode <span class="validity_check"><?php echo isNumber($zipcode);?></span></label>
+                    <label for="zipcode">Zipcode <span class="validity_check"><?php echo $zipcodeErr;//isNumber($zipcode);?></span></label>
                     <input type="text" id="zipcode" name="zipcode" class="form-control" value="">
                 </div>
             </div>
