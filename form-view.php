@@ -49,7 +49,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail: <span class="validity_check"><?php echo isEmailValid($email_address);?></span></label>
-                <input type="text" id="email" name="email" class="form-control" value= <?php echo $_SESSION["email"];?> required> 
+                <input type="text" id="email" name="email" class="form-control" value= <?php echo $_SESSION["email"];?>> 
             </div>
             <div></div>
         </div>
@@ -60,21 +60,21 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="street">Street:</label>
-                    <input type="text" name="street" id="street" class="form-control" required>
+                    <input type="text" name="street" id="street" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Street number: <span class="validity_check"><?php echo isNumber($street_number);?></span></label>
-                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" value="" required>
+                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" value="">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" class="form-control" value="" required>
+                    <input type="text" id="city" name="city" class="form-control" value="">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode <span class="validity_check"><?php echo isNumber($zipcode);?></span></label>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="" required>
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="">
                 </div>
             </div>
         </fieldset>
@@ -88,7 +88,7 @@
             <?php endforeach; ?>
         </fieldset>
 
-        <button type="submit" name="submit" class="btn btn-primary">Order!</button>
+        <button type="submit" name="submit" value="submit" class="btn btn-primary">Order!</button>
     </form>
 
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
