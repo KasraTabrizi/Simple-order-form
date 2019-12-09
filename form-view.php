@@ -13,6 +13,9 @@
             color:red; 
             font-weight:bold;
         }
+        footer {
+        text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -35,7 +38,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail: <span class="validity_check"><?php echo isEmailValid($email_address);?></span></label>
-                <input type="text" id="email" name="email" class="form-control" required> 
+                <input type="text" id="email" name="email" class="form-control" value= <?php echo $_SESSION["email"];?> required> 
             </div>
             <div></div>
         </div>
@@ -74,16 +77,10 @@
             <?php endforeach; ?>
         </fieldset>
 
-        <button type="submit" class="btn btn-primary">Order!</button>
+        <button type="submit" name="submit" class="btn btn-primary">Order!</button>
     </form>
 
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>
-
-<style>
-    footer {
-        text-align: center;
-    }
-</style>
 </body>
 </html>
