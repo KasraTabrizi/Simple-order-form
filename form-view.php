@@ -97,12 +97,50 @@
             $_SESSION['city'] = $city;
             //$alertCheck = 2;
         }
+
+        //checkbox check
+        if (empty($_POST["Club_Ham"]))  {
+            $_SESSION['Club_Ham'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Club_Ham'] = 'checked';
+        }
+
+        if (empty($_POST["Club_Cheese"]))  { 
+            $_SESSION['Club_Cheese'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Club_Cheese'] = 'checked';
+        }
+
+        if (empty($_POST["Club_Cheese_&_Ham"]))  { 
+            $_SESSION['Club_Cheese_&_Ham'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Club_Cheese_&_Ham'] = 'checked';
+        }
+
+        if (empty($_POST["Club_Chicken"]))  { 
+            $_SESSION['Club_Chicken'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Club_Chicken'] = 'checked';
+        }
+
+        if (empty($_POST["Club_Salmon"]))  { 
+            $_SESSION['Club_Salmon'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Club_Salmon'] = 'checked';
+        }
+
         if(empty($emailErr) and empty($streetNumErr) and empty($streetNameErr) and empty($zipcodeErr) and empty($cityErr)){
             $alertCheck = 2;
         }
         else{
             $alertCheck = 1;
         }
+        //whatIsHappening();
     }
 ?>
 
@@ -175,8 +213,28 @@
             <legend>Products</legend>
             <?php foreach ($products AS $i => $product): ?>
                 <label>
-                    <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?> -
-                    &euro; <?php echo number_format($product['price'], 2) ?></label><br />
+                    <input type="checkbox" value="1" name=<?php echo $product['name'] ?>    
+                    <?php 
+                        if($product['name'] == "Club_Ham"){
+                            echo $_SESSION['Club_Ham'];
+                        }
+                        if($product['name'] == "Club_Cheese"){
+                            echo $_SESSION['Club_Cheese'];
+                        }
+                        if($product['name'] == "Club_Cheese_&_Ham"){
+                            echo $_SESSION['Club_Cheese_&_Ham'];
+                        }
+                        if($product['name'] == ""){
+                            echo $_SESSION['Club_Chicken'];
+                        }
+                        if($product['name'] == "Club_Salmon"){
+                            echo $_SESSION['Club_Salmon'];
+                        }
+                    ?>/> 
+                    <?php echo str_replace( "_", " ", $product['name']) ?> -&euro; 
+                    <?php echo number_format($product['price'], 2) ?>
+                </label>
+                <br />
             <?php endforeach; ?>
         </fieldset>
 
