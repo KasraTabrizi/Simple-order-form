@@ -5,8 +5,173 @@ declare(strict_types=1);
 //session_unset();
 session_start();
 
+$emailErr = $streetNumErr = $streetNameErr = $zipcodeErr = $cityErr = "";
+$email_address = $street_name = $street_number = $city = $zipcode = "";
+$alertCheck = 0;
 $food = 1;
+$totalValue = 0;
+    //var_dump(isset($_GET["food"]));
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        $emailErr = $streetNumErr = $streetNameErr = $zipcodeErr = $cityErr = "";
+        if (empty($_POST["email"])) {
+            $emailErr = "Missing";
+            $_SESSION["email"] = $email_address;
+            //$alertCheck = 1;
+        }
+        else {
+            $email_address = $_POST["email"];
+            $_SESSION["email"] = $email_address;
+            if(!isEmailValid($email_address)){
+                $emailErr = 'email address is invalid!';
+                //$alertCheck = 1;
+            }
+            else{
+                $emailErr = "";
+                //$alertCheck = 2;
+            }
+        }
+        if (empty($_POST["street"])) {
+            $streetNameErr = "Missing";
+            $_SESSION['street'] = $street_name;
+            //$alertCheck = 1;
+        }
+        else {
+            $street_name = $_POST["street"];
+            $_SESSION['street'] = $street_name;
+            //$alertCheck = 2;
+        }
+        if (empty($_POST["streetnumber"]))  {
+            $streetNumErr = "Missing";
+            $_SESSION['streetnumber'] = $street_number;
+            //$alertCheck = 1;
+        }
+        else {
+            $street_number = $_POST["streetnumber"];
+            $_SESSION['streetnumber'] = $street_number;
+            if(!isNumber($street_number)){
+                $streetNumErr = 'value is not a number!';
+                //$alertCheck = 1;
+            }
+            else{
+                $streetNumErr = "";
+                //$alertCheck = 2;
+            }
+        }
+        if (empty($_POST["zipcode"]))  {
+            $zipcodeErr = "Missing";
+            $_SESSION['zipcode'] = $zipcode;
+            //$alertCheck = 1;
+        }
+        else {
+            $zipcode = $_POST["zipcode"];
+            $_SESSION['zipcode'] = $zipcode;
+            if(!isNumber($zipcode)){
+                $streetNumErr = 'value is not a number!';
+                //$alertCheck = 1;
+            }
+            else{
+                $streetNumErr = "";
+                //$alertCheck = 2;
+            }
+        }
+        if (empty($_POST["city"]))  {
+            $cityErr = "Missing";
+            $_SESSION['city'] = $city;
+            //$alertCheck = 1;
+        }
+        else {
+            $city = $_POST["city"];
+            $_SESSION['city'] = $city;
+            //$alertCheck = 2;
+        }
+        if (isset($_POST["divtime"]))  {
+            //$_SESSION['test'] = 'unchecked';
+            foreach ($_POST["divtime"] as $subject)  
+                var_dump($subject); 
+            //$totalValue += 10;
+        }
+        else {
+            // Retrieving each selected option 
+            
+        }
+        //checkbox check
+        if (empty($_POST["Club_Ham"]))  {
+            $_SESSION['Club_Ham'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Club_Ham'] = 'checked';
+            $totalValue += 3.2;
+        }
 
+        if (empty($_POST["Club_Cheese"]))  { 
+            $_SESSION['Club_Cheese'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Club_Cheese'] = 'checked';
+            $totalValue += 3;
+        }
+
+        if (empty($_POST["Club_Cheese_&_Ham"]))  { 
+            $_SESSION['Club_Cheese_&_Ham'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Club_Cheese_&_Ham'] = 'checked';
+            $totalValue += 4;
+        }
+
+        if (empty($_POST["Club_Chicken"]))  { 
+            $_SESSION['Club_Chicken'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Club_Chicken'] = 'checked';
+            $totalValue += 4;
+        }
+
+        if (empty($_POST["Club_Salmon"]))  { 
+            $_SESSION['Club_Salmon'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Club_Salmon'] = 'checked';
+            $totalValue += 5;
+        }
+
+        if (empty($_POST["Cola"]))  { 
+            $_SESSION['Cola'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Cola'] = 'checked';
+        }
+
+        if (empty($_POST["Fanta"]))  { 
+            $_SESSION['Fanta'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Fanta'] = 'checked';
+        }
+
+        if (empty($_POST["Sprite"]))  { 
+            $_SESSION['Sprite'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Sprite'] = 'checked';
+        }
+
+        if (empty($_POST["Ice-tea"]))  { 
+            $_SESSION['Ice-tea'] = 'unchecked';
+        }
+        else {
+            $_SESSION['Ice-tea'] = 'checked';
+        }
+
+        if(empty($emailErr) and empty($streetNumErr) and empty($streetNameErr) and empty($zipcodeErr) and empty($cityErr)){
+            $alertCheck = 2;
+        }
+        else{
+            $alertCheck = 1;
+        }
+        whatIsHappening();
+        //mail($_SESSION["email"], 'My Subject', $street_name);
+    }
 // $email_address = $_POST['email'];
 // $street_name = $_POST['street'];
 // $street_number = $_POST['streetnumber'];
@@ -47,11 +212,11 @@ function isNumber($inputText){
 //function that shows an alert danger box
 function showAlertMessage($error = "", $showAlert = false){
     //if there is no error message and the showAlert is true than show a succes alert
-    if( empty($error) and $showAlert == true ){ 
+    if( empty($error) && $showAlert == true ){ 
         echo'<div class="alert alert-success" role="alert">Form succesfully send!</div>';
     }
     //if there is an error message and the showAlert is true, then show a danger alert
-    elseif(!empty($error) and $showAlert == true){ 
+    elseif(!empty($error) && $showAlert == true){ 
         echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
     }
 }
@@ -78,6 +243,6 @@ else{
     ];
 }
 
-$totalValue = 0;
+
 
 require 'form-view.php';
