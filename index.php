@@ -13,18 +13,6 @@ $food = 1;
 // $city = $_POST['city'];
 // $zipcode = $_POST['zipcode'];
 
-
-// //check if the submit button is pressed
-// if(isset($_POST['submit'])){
-//     $_SESSION["email"] = $email_address;
-//     $_SESSION['street'] = $street_name; 
-//     $_SESSION['streetnumber'] = $street_number;
-//     $_SESSION['city'] = $city;
-//     $_SESSION['zipcode'] = $zipcode;
-// }
-
-
-
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
     var_dump($_GET);

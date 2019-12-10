@@ -24,7 +24,8 @@
     $emailErr = $streetNumErr = $streetNameErr = $zipcodeErr = $cityErr = "";
     $email_address = $street_name = $street_number = $city = $zipcode = "";
     $alertCheck = 0;
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //var_dump(isset($_GET["food"]));
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $emailErr = $streetNumErr = $streetNameErr = $zipcodeErr = $cityErr = "";
         if (empty($_POST["email"])) {
             $emailErr = "Missing";
@@ -194,6 +195,7 @@
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link active" href="?food=1">Order food</a>
+                <!-- <a class="nav-link active" href="food.php">Order food</a> -->
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="?food=0">Order drinks</a>
