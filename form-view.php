@@ -26,7 +26,6 @@
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link active" href="?food=1">Order food</a>
-                <!-- <a class="nav-link active" href="food.php">Order food</a> -->
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="?food=0">Order drinks</a>
@@ -52,10 +51,10 @@
         ?>
     </div>
 
-    <form method="post" action="index.php">
+    <form method="post" action="test.php">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="email">E-mail: <span class="validity_check"><?php echo $emailErr;?></span></label>
+                <label for="email">E-mail: <span class="validity_check"><?php echo $arrayErr['email'];?></span></label>
                 <input type="text" id="email" name="email" class="form-control" 
                 value= 
                 <?php if(empty($_SESSION["email"])):
@@ -73,7 +72,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="street">Street:<span class="validity_check"><?php echo $streetNameErr;//isNumber($street_number);?></span></label>
+                    <label for="street">Street:<span class="validity_check"><?php echo $arrayErr['street'];?></span></label>
                     <input type="text" name="street" id="street" class="form-control" 
                     value= 
                     <?php if(empty($_SESSION["street"])):
@@ -84,7 +83,7 @@
                     >
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="streetnumber">Street number: <span class="validity_check"><?php echo $streetNumErr;//isNumber($street_number);?></span></label>
+                    <label for="streetnumber">Street number: <span class="validity_check"><?php echo $arrayErr['streetnumber'];?></span></label>
                     <input type="text" id="streetnumber" name="streetnumber" class="form-control" 
                     value= 
                     <?php if(empty($_SESSION["streetnumber"])):
@@ -97,7 +96,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="city">City:<span class="validity_check"><?php echo $cityErr;//isNumber($street_number);?></span></label>
+                    <label for="city">City:<span class="validity_check"><?php echo $arrayErr['city'];?></span></label>
                     <input type="text" id="city" name="city" class="form-control" 
                     value=
                     <?php if(empty($_SESSION["city"])):
@@ -108,7 +107,7 @@
                     >
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="zipcode">Zipcode <span class="validity_check"><?php echo $zipcodeErr;//isNumber($zipcode);?></span></label>
+                    <label for="zipcode">Zipcode <span class="validity_check"><?php echo $arrayErr['zipcode'];?></span></label>
                     <input type="text" id="zipcode" name="zipcode" class="form-control" 
                     value=
                     <?php if(empty($_SESSION["zipcode"])):
@@ -181,9 +180,9 @@
                 <fieldset>
                     <legend>Delivery Time</legend>
                     <!-- <label for="inputState">Delivery Time</label> -->
-                    <select id="inputState" name="devtime" class="form-control">
+                    <select id="inputState"class="form-control">
                         <option selected>Choose a delivery time</option>
-                        <option name="test" value="10">Normal Delivery | 2 hours - 10 &euro;</option>
+                        <option>Normal Delivery | 2 hours - 10 &euro;</option>
                         <option>Express Delivery | 45 minutes - 20 &euro;</option>
                     </select>
                 </fieldset>
