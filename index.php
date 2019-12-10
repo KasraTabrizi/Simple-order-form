@@ -2,7 +2,7 @@
 //this line makes PHP behave in a more strict way
 declare(strict_types=1);
 //we are going to use session variables so we need to enable sessions
-
+//session_unset();
 session_start();
 
 $food = 1;
