@@ -123,51 +123,10 @@
             <div class="form-group col-md-6">
                 <fieldset>
                     <legend>Products</legend>
-                    <?php foreach ($products as $i => $product): ?>
+                    <?php foreach ($products AS $i => $product): ?>
                         <label>
-                            <input type="checkbox" value="1" name=<?php echo $product['name'] ?>    
-                            <?php
-                                if(empty($_SESSION['Club_Ham']) and empty($_SESSION['Club_Cheese'])){
-                                    $_SESSION['Club_Cheese'] = "";
-                                    $_SESSION['Club_Cheese_&_Ham'] = "";
-                                    $_SESSION['Club_Chicken'] = "";
-                                    $_SESSION['Club_Salmon'] = "";
-                                    $_SESSION['Cola'] = "";
-                                    $_SESSION['Fanta'] = "";
-                                    $_SESSION['Sprite'] = "";
-                                    $_SESSION['Ice-tea'] = "";
-                                }
-                                else{
-                                    if($product['name'] == "Club_Ham"){
-                                        echo $_SESSION['Club_Ham'];
-                                    }
-                                    if($product['name'] == "Club_Cheese"){
-                                        echo $_SESSION['Club_Cheese'];
-                                    }
-                                    if($product['name'] == "Club_Cheese_&_Ham"){
-                                        echo $_SESSION['Club_Cheese_&_Ham'];
-                                    }
-                                    if($product['name'] == "Club_Chicken"){
-                                        echo $_SESSION['Club_Chicken'];
-                                    }
-                                    if($product['name'] == "Club_Salmon"){
-                                        echo $_SESSION['Club_Salmon'];
-                                    }
-                                    if($product['name'] == "Cola"){
-                                        echo $_SESSION['Cola'];
-                                    }
-                                    if($product['name'] == "Fanta"){
-                                        echo $_SESSION['Fanta'];
-                                    }
-                                    if($product['name'] == "Sprite"){
-                                        echo $_SESSION['Sprite'];
-                                    }
-                                    if($product['name'] == "Ice-tea"){
-                                        echo $_SESSION['Ice-tea'];
-                                    }
-                                }
-                            ?>/> 
-                            <?php echo str_replace( "_", " ", $product['name']) ?> -&euro; 
+                            <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> 
+                            <?php echo $product['name'] ?> -&euro; 
                             <?php echo number_format($product['price'], 2) ?>
                         </label>
                         <br />

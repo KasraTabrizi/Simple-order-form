@@ -15,16 +15,25 @@ $arrayErr = array(
     "street" => "",
     "zipcode" => "",
     "city" => "",
+    "Club_Ham" => "",
+    "Club_Cheese" => "",
+    "Club_Cheese_&_Ham" => "",
+    "Club_Chicken" => "",
+    "Club_Salmon" => "",
+    "Cola" => "",
+    "Fanta" => "",
+    "Sprite" => "",
+    "Ice-tea" => "",
+    "normal" => "",
+    "express" => "",
 );
 
-//var_dump(isset($_GET["food"]));
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $arrayErr = $_POST;
-    //$emailErr = $streetNumErr = $streetNameErr = $zipcodeErr = $cityErr = "";
     foreach($_POST as $key => $value){
 
-        //var_dump("{$key} => {$value}");
+        var_dump("{$key} => {$value}");
 
         if(empty($_POST[$key])){ //check if field is empty
             $arrayErr[$key] = "Missing";
@@ -40,8 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $alertCheck = 1;
             }
             else{
-                $arrayErr[$key] = "";
-                $_SESSION = $_POST;
+                $arrayErr[$key] = ""; //if no errors found, make the value of that key in the array error empty
+                $_SESSION = $_POST; //copy everything from the $_POST into the $_SESSION
             }
         }
     }
@@ -118,13 +127,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $_SESSION['Ice-tea'] = 'checked';
     }
     //whatIsHappening();
-    //mail($_SESSION["email"], 'My Subject', $street_name);
+    //mail($_SESSION["email"], 'My Subject', $street_name); doesn't work at the moment
 }
-// $email_address = $_POST['email'];
-// $street_name = $_POST['street'];
-// $street_number = $_POST['streetnumber'];
-// $city = $_POST['city'];
-// $zipcode = $_POST['zipcode'];
+//your products with their price.
+if(isset($_GET["food"])){
+    $food = $_GET["food"];
+}
+
+if($food == "1"){
+    $products = [
+        ['name' => 'Club Ham', 'price' => 3.20],
+        ['name' => 'Club Cheese', 'price' => 3],
+        ['name' => 'Club Cheese & Ham', 'price' => 4],
+        ['name' => 'Club Chicken', 'price' => 4],
+        ['name' => 'Club Salmon', 'price' => 5]
+    ];
+}
+else{
+    $products = [
+        ['name' => 'Cola', 'price' => 2],
+        ['name' => 'Fanta', 'price' => 2],
+        ['name' => 'Sprite', 'price' => 2],
+        ['name' => 'Ice-tea', 'price' => 3],
+    ];
+}
 
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
@@ -148,27 +174,7 @@ function showAlertMessage($error = "", $showAlert = false){
         echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
     }
 }
-//your products with their price.
-if(isset($_GET["food"])){
-    $food = $_GET["food"];
-}
 
-if($food == "1"){
-    $products = [
-        ['name' => 'Club_Ham', 'price' => 3.20],
-        ['name' => 'Club_Cheese', 'price' => 3],
-        ['name' => 'Club_Cheese_&_Ham', 'price' => 4],
-        ['name' => 'Club_Chicken', 'price' => 4],
-        ['name' => 'Club_Salmon', 'price' => 5]
-    ];
-}
-else{
-    $products = [
-        ['name' => 'Cola', 'price' => 2],
-        ['name' => 'Fanta', 'price' => 2],
-        ['name' => 'Sprite', 'price' => 2],
-        ['name' => 'Ice-tea', 'price' => 3]
-    ];
-}
 
+//include the form-view php file and give error if something happens
 require 'form-view.php';
