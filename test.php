@@ -15,17 +15,6 @@ $arrayErr = array(
     "street" => "",
     "zipcode" => "",
     "city" => "",
-    "Club_Ham" => "",
-    "Club_Cheese" => "",
-    "Club_Cheese_&_Ham" => "",
-    "Club_Chicken" => "",
-    "Club_Salmon" => "",
-    "Cola" => "",
-    "Fanta" => "",
-    "Sprite" => "",
-    "Ice-tea" => "",
-    "normal" => "",
-    "express" => "",
 );
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
