@@ -175,6 +175,5 @@ function showAlertMessage($error = "", $showAlert = false){
     }
 }
 
-
 //include the form-view php file and give error if something happens
 require 'form-view.php';
