@@ -123,7 +123,7 @@
             <div class="form-group col-md-6">
                 <fieldset>
                     <legend>Products</legend>
-                    <?php foreach ($products AS $i => $product): ?>
+                    <?php foreach ($products as $i => $product): ?>
                         <label>
                             <input type="checkbox" value="1" name=<?php echo $product['name'] ?>    
                             <?php
@@ -153,7 +153,6 @@
                                     if($product['name'] == "Club_Salmon"){
                                         echo $_SESSION['Club_Salmon'];
                                     }
-    
                                     if($product['name'] == "Cola"){
                                         echo $_SESSION['Cola'];
                                     }
@@ -180,11 +179,11 @@
                 <fieldset>
                     <legend>Delivery Time</legend>
                     <!-- <label for="inputState">Delivery Time</label> -->
-                    <select id="inputState"class="form-control">
-                        <option selected>Choose a delivery time</option>
-                        <option>Normal Delivery | 2 hours - 10 &euro;</option>
-                        <option>Express Delivery | 45 minutes - 20 &euro;</option>
-                    </select>
+                    <label>
+                        <input type="checkbox" value="1" name="normal">Normal Delivery | 2 hours - 10 &euro;
+                        <br>
+                        <input type="checkbox" value="1" name="express">Express Delivery | 45 minutes - 15 &euro;
+                    </label> 
                 </fieldset>
             </div>
         </div>
