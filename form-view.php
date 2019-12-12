@@ -125,7 +125,7 @@
                     <legend>Products</legend>
                     <?php foreach ($products AS $i => $product): ?>
                         <label>
-                            <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> 
+                            <input type="checkbox" value="<?php echo $i; ?>" name="products[]"/> 
                             <?php echo $product['name'] ?> -&euro; 
                             <?php echo number_format($product['price'], 2) ?>
                         </label>
